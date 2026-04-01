@@ -1,5 +1,5 @@
 name: Remote Mod Build
-on: [push, workflow_dispatch] # Runs every time you save or click a button
+on: [push, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,10 +10,10 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Grant Execute Permission
+      - name: Fix Permissions
         run: chmod +x gradlew
       - name: Build JAR
-        run: ./gradlew build
+        run: ./gradlew build --no-daemon
       - name: Upload Result
         uses: actions/upload-artifact@v4
         with:
